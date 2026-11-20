@@ -13,11 +13,42 @@ The [Colab notebook](primevul_unixcoder_baseline_colab.ipynb) contains the code 
 
 Open the notebook in Colab and use a CUDA runtime with BF16 support. For a fresh run set `RESUME_FROM_LAST_CHECKPOINT = False` **and** set `PROJECT_DIR` to a new Drive directory; this protects the previous run’s outputs. For interrupted training, use the same run configuration and directory with `RESUME_FROM_LAST_CHECKPOINT = True`; resume from a full `checkpoint-*`, not `best_model/`.
 
-The repository does not contain source examples, per-example predictions, raw notebook outputs, or checkpoint weights. Those artifacts remain in the run’s Drive storage. The release includes:
+The repository’s Git history contains only code and aggregate snapshots:
 
 - [`colab/midpoint_baseline.json`](colab/midpoint_baseline.json): configuration, split counts, saved results, and the published comparator.
 - [`colab/validation_history.csv`](colab/validation_history.csv): all 28 scheduled validation measurements at notebook display precision.
 - [`colab/prediction_audit.json`](colab/prediction_audit.json): independent aggregate replay of the saved prediction files, including score ordering.
+
+## Restore the complete Colab run
+
+The [full-run GitHub Release](https://github.com/sujitu0806/primevul-peft-moe-grpo/releases/tag/primevul-unixcoder-midpoint-full) contains all 44 saved files, including the dataset copies, raw predictions, tokenizer, best model, and three resumable checkpoints. The three ZIPs are about 4.52 GB to download and restore to the same folder. They are Release assets, so a regular clone or pull does not download them.
+
+Download all three ZIPs and `SHA256SUMS` from the release, or use the GitHub CLI, then unpack the complete snapshot:
+
+```sh
+mkdir -p run-downloads
+gh release download primevul-unixcoder-midpoint-full \
+  --repo sujitu0806/primevul-peft-moe-grpo --dir run-downloads
+(cd run-downloads && shasum -a 256 -c SHA256SUMS) || exit 1
+mkdir restored-run || exit 1
+for archive in run-downloads/primevul_unixcoder_baseline-*.zip; do
+  unzip -n "$archive" -d restored-run
+done
+```
+
+Load the selected model and tokenizer without training:
+
+```python
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
+path = "restored-run/primevul_unixcoder_baseline/best_model"
+tokenizer = AutoTokenizer.from_pretrained(path)
+model = AutoModelForSequenceClassification.from_pretrained(path)
+```
+
+For training resume, point the notebook’s `PROJECT_DIR` to the restored `primevul_unixcoder_baseline` folder and use the latest full checkpoint, `checkpoint-28820`. This checkpoint is at the end of the original 10-epoch schedule; training beyond it requires a higher stopping limit. See the [upstream PrimeVul repository](https://github.com/DLVulDet/PrimeVul) for the original dataset and citation.
+
+## Audit the reported metrics
 
 With your own copies of the completed notebook and exports, regenerate the summaries locally without a GPU:
 
