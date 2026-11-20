@@ -1,0 +1,131 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "task": "binary vulnerability detection, inference only",
+  "split": "primevul_test_paired",
+  "functions": 1128,
+  "pairs": 564,
+  "decoding": "greedy",
+  "max_input_tokens": 8192,
+  "dataset_sha256": "54a16a5ab663d11d1ffa5f48a98b0f996e82ee85f48a2b999334f6c1a7d96e41",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "conditions": {
+    "zero_shot": {
+      "max_new_tokens": 32,
+      "complete": true,
+      "functions_saved": 1128,
+      "scored_pairs": 564,
+      "missing_pairs": 0,
+      "counts": {
+        "P-C": 5,
+        "P-V": 8,
+        "P-B": 544,
+        "P-R": 7,
+        "unparsed": 0
+      },
+      "percent_of_564_pairs": {
+        "P-C": 0.8865248226950354,
+        "P-V": 1.4184397163120568,
+        "P-B": 96.45390070921985,
+        "P-R": 1.2411347517730495,
+        "unparsed": 0.0
+      },
+      "truncated_functions": 38,
+      "elapsed_seconds": 97.3,
+      "function_level": {
+        "parsed": 1128,
+        "unparsed": 0,
+        "tp": 13,
+        "fp": 15,
+        "tn": 549,
+        "fn": 551,
+        "accuracy_pct": 49.822695035460995,
+        "precision_pct": 46.42857142857143,
+        "recall_pct": 2.304964539007092,
+        "f1_pct": 4.391891891891892,
+        "predicted_vulnerable": 28
+      }
+    },
+    "two_shot": {
+      "max_new_tokens": 32,
+      "complete": true,
+      "functions_saved": 1128,
+      "scored_pairs": 564,
+      "missing_pairs": 0,
+      "counts": {
+        "P-C": 23,
+        "P-V": 220,
+        "P-B": 300,
+        "P-R": 21,
+        "unparsed": 0
+      },
+      "percent_of_564_pairs": {
+        "P-C": 4.078014184397163,
+        "P-V": 39.00709219858156,
+        "P-B": 53.191489361702125,
+        "P-R": 3.723404255319149,
+        "unparsed": 0.0
+      },
+      "truncated_functions": 43,
+      "elapsed_seconds": 120.8,
+      "function_level": {
+        "parsed": 1128,
+        "unparsed": 0,
+        "tp": 243,
+        "fp": 241,
+        "tn": 323,
+        "fn": 321,
+        "accuracy_pct": 50.177304964539005,
+        "precision_pct": 50.20661157024794,
+        "recall_pct": 43.08510638297872,
+        "f1_pct": 46.37404580152671,
+        "predicted_vulnerable": 484
+      }
+    },
+    "cot": {
+      "max_new_tokens": 512,
+      "complete": true,
+      "functions_saved": 1128,
+      "scored_pairs": 564,
+      "missing_pairs": 0,
+      "counts": {
+        "P-C": 7,
+        "P-V": 11,
+        "P-B": 266,
+        "P-R": 9,
+        "unparsed": 271
+      },
+      "percent_of_564_pairs": {
+        "P-C": 1.2411347517730495,
+        "P-V": 1.950354609929078,
+        "P-B": 47.163120567375884,
+        "P-R": 1.5957446808510638,
+        "unparsed": 48.04964539007092
+      },
+      "truncated_functions": 40,
+      "elapsed_seconds": 4926.8,
+      "function_level": {
+        "parsed": 672,
+        "unparsed": 456,
+        "tp": 31,
+        "fp": 37,
+        "tn": 303,
+        "fn": 301,
+        "accuracy_pct": 49.702380952380956,
+        "precision_pct": 45.588235294117645,
+        "recall_pct": 9.33734939759036,
+        "f1_pct": 15.5,
+        "predicted_vulnerable": 68
+      }
+    }
+  },
+  "reference_not_from_this_run": {
+    "model": "microsoft/unixcoder-base",
+    "source": "colab/midpoint_baseline.json",
+    "paired_counts": {
+      "P-C": 8,
+      "P-V": 76,
+      "P-B": 476,
+      "P-R": 4
+    }
+  }
+}

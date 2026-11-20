@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "observed": "Settings and saved outputs of the completed Colab run; not a new run by this exporter.",
+    "derived": "Integer counts reconstructed from saved percentages and denominators, not per-example predictions.",
+    "dataset": "PrimeVul original release",
+    "dataset_url": "https://github.com/DLVulDet/PrimeVul#-primevul-dataset",
+    "base_notebook_code_url": "https://github.com/sujitu0806/primevul-peft-moe-grpo/blob/8ed9f174d025f9be798c6d5b64d381db008c4d33/primevul_unixcoder_baseline_colab.ipynb",
+    "notebook_difference": "The executed notebook projects each JSONL row onto the three fields needed for training or evaluation and preserves row order."
+  },
+  "run": {
+    "model": "microsoft/unixcoder-base",
+    "gpu": "NVIDIA L4",
+    "pytorch_version": "2.14.1+cu130",
+    "seed": 123456,
+    "precision": "BF16",
+    "initialization": "pretrained_weights",
+    "max_input_tokens": 512,
+    "epochs_completed": 10.0,
+    "learning_rate": 2e-05,
+    "warmup_optimizer_steps": 1000,
+    "train_microbatch_size": 16,
+    "gradient_accumulation_steps": 4,
+    "effective_train_batch_size": 64,
+    "eval_batch_size": 64,
+    "eval_and_save_interval_optimizer_steps": 1000,
+    "optimizer": "adamw_torch",
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "loss": "Unweighted binary cross-entropy with logits",
+    "trainer_runtime_hms": "7:32:21.75",
+    "trainer_runtime_seconds": 27141.75,
+    "optimizer_steps_completed": 28820,
+    "best_checkpoint_optimizer_step": 13000,
+    "best_validation_f1": 0.2658450704225352
+  },
+  "split_counts": {
+    "train": {
+      "rows": 184427,
+      "vulnerable": 5574,
+      "benign": 178853
+    },
+    "validation": {
+      "rows": 25430,
+      "vulnerable": 699,
+      "benign": 24731
+    },
+    "test": {
+      "rows": 25911,
+      "vulnerable": 695,
+      "benign": 25216
+    },
+    "test_paired": {
+      "rows": 1128,
+      "vulnerable": 564,
+      "benign": 564
+    }
+  },
+  "evaluation": {
+    "classifier_probability_cutoff": 0.5,
+    "positive_when_score_is_at_least_cutoff": true,
+    "vd_s_max_fpr_pct": 0.5,
+    "vd_s_probability_cutoff": 0.5888891220092773,
+    "paired_test_pairs": 564
+  },
+  "observed_metrics_pct": {
+    "full_test": {
+      "accuracy": 96.76585234070471,
+      "precision": 31.713554987212277,
+      "recall": 17.841726618705035,
+      "f1": 22.83609576427256,
+      "VD-S": 89.35251798561151,
+      "VD-S realized FPR": 0.4996827411167513
+    },
+    "paired_test": {
+      "P-C": 1.4184397163120568,
+      "P-V": 13.47517730496454,
+      "P-B": 84.39716312056737,
+      "P-R": 0.7092198581560284
+    }
+  },
+  "derived_counts": {
+    "full_test": {
+      "at_classifier_cutoff": {
+        "tp": 124,
+        "fp": 267,
+        "tn": 24949,
+        "fn": 571
+      },
+      "at_vd_s_cutoff": {
+        "tp": 74,
+        "fp": 126,
+        "tn": 25090,
+        "fn": 621
+      }
+    },
+    "paired_test": {
+      "P-C": 8,
+      "P-V": 76,
+      "P-B": 476,
+      "P-R": 4
+    }
+  },
+  "paper_reference": {
+    "description": "Ding et al., Table V, UniXcoder trained and evaluated on PrimeVul (published rounded percentages).",
+    "url": "https://arxiv.org/html/2403.18624v2#S5.T5",
+    "metrics_pct": {
+      "accuracy": 96.86,
+      "f1": 21.43,
+      "VD-S": 89.21,
+      "P-C": 1.6,
+      "P-V": 12.06,
+      "P-B": 85.11,
+      "P-R": 1.24
+    }
+  },
+  "validation_history": {
+    "file": "validation_history.csv",
+    "rows": 28,
+    "metric_units": "Fractions at the precision displayed in the notebook."
+  }
+}

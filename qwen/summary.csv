@@ -1,0 +1,4 @@
+condition,complete,P-C,P-V,P-B,P-R,unparsed,function_f1_pct,predicted_vulnerable,parsed_functions,truncated_functions,elapsed_seconds
+zero_shot,True,5,8,544,7,0,4.3919,28,1128,38,97.3
+two_shot,True,23,220,300,21,0,46.374,484,1128,43,120.8
+cot,True,7,11,266,9,271,15.5,68,672,40,4926.8
