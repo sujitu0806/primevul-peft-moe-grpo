@@ -1,0 +1,36 @@
+{
+  "source": "Saved test_predictions.csv and paired_test_predictions.csv from the completed Colab run; summary only.",
+  "probability_precision": "IEEE float32, as emitted by the notebook; scores are grouped before applying the ROC cap.",
+  "full_test": {
+    "rows": 25911,
+    "counts_at_0_5": {
+      "tp": 124,
+      "fp": 267,
+      "tn": 24949,
+      "fn": 571
+    },
+    "vd_s_probability_cutoff": 0.5888891220092773,
+    "counts_at_vd_s_cutoff": {
+      "tp": 74,
+      "fp": 126,
+      "tn": 25090,
+      "fn": 621
+    }
+  },
+  "paired_test": {
+    "pairs": 564,
+    "outcomes": {
+      "P-C": 8,
+      "P-V": 76,
+      "P-B": 476,
+      "P-R": 4
+    },
+    "same_verdict": 552,
+    "vulnerable_score_relative_to_fixed": {
+      "higher": 143,
+      "tie": 202,
+      "lower": 219
+    },
+    "rank_accuracy_ties_half_credit_pct": 43.262411347517734
+  }
+}
